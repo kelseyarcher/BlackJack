@@ -13,107 +13,113 @@ struct ContentView: View {
     @State var deck = [Card]()
     @State var dealerCards = [Card]()
     @State var playerCards = [Card]()
+    @State var held = false
+    @State var playerBust = false
+    @State var dealerBustShown = false
+  
+
     
     var body: some View {
+        GeometryReader { geo in
+             
         ZStack {
+            
             Color.green.ignoresSafeArea()
+            
+            if held == true || totalCardValue(playerCards).1 > 21{
+            if totalCardValue(playerCards).1 > 21 || (totalCardValue(dealerCards).1<=21 && totalCardValue(playerCards).1<=totalCardValue(dealerCards).1){
+                Text("Dealer Wins")
+            }
+            else {
+                Text("Player Wins")
+            }}
             VStack{
-                
-                HStack(spacing:30) {
-                    Button("Shuffle Deck"){
-                        deck.shuffle()
-                    }
+                ZStack{
+                VStack{
                     Button("New Game"){
                         playerCards.removeAll()
                         dealerCards.removeAll()
                         newGame()
                         print(playerCards.count)
                     }
-                    
-                }
-                Text ("Dealer")
-                Text("Blank")
-                if dealerCards.isEmpty {
-                    Text ("Loading")
-                }
-                else {
-                    ForEach (dealerCards.dropFirst()){ card in
-                        Text(card.name)
+                    Text ("Dealer")
+                    Text("Blank")
+                    if dealerCards.isEmpty {
+                        Text ("Loading")
                     }
-                }
-                Spacer ()
-                Text ("Player")
-                if playerCards.isEmpty {
-                    Text ("Loading")
-                }
-                else {
-                    ForEach (playerCards) { card in
-                        Text(card.name)
+                    else {
+                        ForEach (dealerCards.dropFirst()){ card in
+                            Text(card.name)
+                        }
                     }
-                    
+                    Text(totalCardValue(dealerCards).0, format: .number)
+                    Spacer()
                 }
-                Spacer()
-                Button ("Hit"){
-                    hit()
+                    if totalCardValue(dealerCards).0 > 21 || (totalCardValue(dealerCards).1 > 21 && held == true){
+                        Spacer()
+                        Text("Dealer Busts")
+                            .font(.largeTitle)
+                            .fontWeight(.heavy)
+                            .foregroundColor(Color.red)
+                            .frame(width: geo.size.width)
+                            .background(.blue)
+                    }
+                        
                 }
                 
+                ZStack {
+                    VStack {
+                        Text ("Player")
+                        if playerCards.isEmpty {
+                            Text ("Loading")
+                        }
+                        else {
+                            ForEach (playerCards) { card in
+                                Text(card.name)
+                            }
+                        }
+                        Text(totalCardValue(playerCards).1, format: .number)
+                        
+                        Spacer()
+                        
+                        HStack{
+                            
+                            Spacer()
+                            
+                            Button ("Hit"){
+                            hit()
+                            }.disabled(held)
+                            
+                            Spacer()
+                            
+                            Button ("Hold") {
+                                hold()
+                                held = true
+                            }.disabled(totalCardValue(playerCards).1 > 21 )
+                            
+                            Spacer()
+                        }
+                    }
+                    if totalCardValue(playerCards).1 > 21 {
+                        Spacer()
+                        Text("Player Busts")
+                            .font(.largeTitle)
+                            .fontWeight(.heavy)
+                            .foregroundColor(Color.red)
+                            .frame(width: geo.size.width)
+                            .background(.blue)
+                }
             }
             .onAppear{
                 newGame()
             }
         }
-    }
     
-    func newGame(){
-        deck = Deck()
-        deck.shuffle()
-        dealerCards.append(deck.removeFirst())
-        playerCards.append(deck.removeFirst())
-        dealerCards.append(deck.removeFirst())
-        playerCards.append(deck.removeFirst())
-        assert(deck.count == 48)
-        
-    }
-    func hit () {
-        if totalCardValue(dealerCards).0 <= 17 {
-            dealerCards.append(deck.removeFirst())
-            playerCards.append(deck.removeFirst())
-        }
-        if totalCardValue(playerCards).1 >= 21 {
-            return
-        }
-        else{
-            playerCards.append(deck.removeFirst())
+            
         }
     }
-    
-    func totalCardValue(_ cards: [Card]) -> (Int,Int) {
-        var valueShown = 0
-        var valueTotal = 0
-        var acePresent = 0
-        for card in cards {
-            if card.pip == "Ace"{
-                acePresent += 1
-                
-            }
-            valueTotal += card.value
-            let dealersDeck = cards.dropFirst()
-            for card in dealersDeck {
-                valueShown += card.value
-                
-            }
-        }
-        if cards.contains(where: { $0.pip == "Ace" }){
-            if valueShown > 21{
-                valueShown -= 10
-            }
-        }
-        return (valueShown, valueTotal)
-        
-    }
-    
 }
-
+}
 //struct ContentView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ContentView()
