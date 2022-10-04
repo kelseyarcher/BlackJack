@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 
@@ -15,14 +16,22 @@ struct Card: Identifiable {
     var name: String{
         pip + " of " + suit
     }
+    var color: Color? {
+        if suit == "heart" || suit == "diamond"{
+            return .red
+        }
+        else {
+            return nil
+        }
+    }
     var id: String{
         name
     }
     var value : Int {
-        if pip == "Jack" || pip == "Queen" || pip == "King" {
+        if pip == "J" || pip == "Q" || pip == "K" {
             return 10
         }
-        if pip == "Ace" {
+        if pip == "A" {
             return 11
         }
         else {
@@ -37,8 +46,8 @@ struct Card: Identifiable {
 //    case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace
 //}
 
-var Suit = ["Hearts", "Diamonds", "Clubs", "Spades"]
-var Pip = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+var Suit = ["heart", "diamond", "club", "spade"]
+var Pip = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 
 
 

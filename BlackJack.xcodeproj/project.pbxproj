@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D2A4BAA28EA14320068FC11 /* gameFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2A4BA928EA14320068FC11 /* gameFunction.swift */; };
+		2D2A4BAC28EB9EE10068FC11 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2A4BAB28EB9EE10068FC11 /* CardView.swift */; };
 		2D62757B28E8769E00F1AD80 /* BlackJackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D62756B28E8769C00F1AD80 /* BlackJackApp.swift */; };
 		2D62757C28E8769E00F1AD80 /* BlackJackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D62756B28E8769C00F1AD80 /* BlackJackApp.swift */; };
 		2D62757D28E8769E00F1AD80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D62756C28E8769C00F1AD80 /* ContentView.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		2D2A4BA928EA14320068FC11 /* gameFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameFunction.swift; sourceTree = "<group>"; };
+		2D2A4BAB28EB9EE10068FC11 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		2D62756B28E8769C00F1AD80 /* BlackJackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackJackApp.swift; sourceTree = "<group>"; };
 		2D62756C28E8769C00F1AD80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2D62756D28E8769E00F1AD80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 		2D62756528E8769C00F1AD80 = {
 			isa = PBXGroup;
 			children = (
+				2D2A4BAB28EB9EE10068FC11 /* CardView.swift */,
 				2D62756A28E8769C00F1AD80 /* Shared */,
 				2D62757928E8769E00F1AD80 /* macOS */,
 				2D62757328E8769E00F1AD80 /* Products */,
@@ -189,6 +192,7 @@
 				2D62757D28E8769E00F1AD80 /* ContentView.swift in Sources */,
 				2D62758A28E8C01F00F1AD80 /* Card.swift in Sources */,
 				2D62757B28E8769E00F1AD80 /* BlackJackApp.swift in Sources */,
+				2D2A4BAC28EB9EE10068FC11 /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,11 +14,7 @@ struct ContentView: View {
     @State var dealerCards = [Card]()
     @State var playerCards = [Card]()
     @State var held = false
-    @State var playerBust = false
-    @State var dealerBustShown = false
-  
 
-    
     var body: some View {
         GeometryReader { geo in
              
@@ -33,7 +29,10 @@ struct ContentView: View {
             else {
                 Text("Player Wins")
             }}
+            
+            
             VStack{
+                // Dealer's View
                 ZStack{
                 VStack{
                     Button("New Game"){
@@ -48,8 +47,8 @@ struct ContentView: View {
                         Text ("Loading")
                     }
                     else {
-                        ForEach (dealerCards.dropFirst()){ card in
-                            Text(card.name)
+                        ForEach (dealerCards.dropFirst()){ currentCard in
+                            CardView(card: currentCard)
                         }
                     }
                     Text(totalCardValue(dealerCards).0, format: .number)
@@ -67,6 +66,13 @@ struct ContentView: View {
                         
                 }
                 
+                
+                
+                
+                
+                
+                
+                // Player's View
                 ZStack {
                     VStack {
                         Text ("Player")
@@ -74,8 +80,8 @@ struct ContentView: View {
                             Text ("Loading")
                         }
                         else {
-                            ForEach (playerCards) { card in
-                                Text(card.name)
+                            ForEach (playerCards) { currentCard in
+                               CardView(card: currentCard)
                             }
                         }
                         Text(totalCardValue(playerCards).1, format: .number)
