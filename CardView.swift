@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CardView: View {
     var card: Card
+    let acePixel = CGFloat(50)
+    
     var body: some View {
         VStack{
             HStack{
@@ -23,12 +25,140 @@ struct CardView: View {
                 
                 Spacer()
             }
-            Image(systemName: "suit.\(card.suit).fill")
-                .font(.system(size: 50))
-                .foregroundColor(card.color)
+            switch card.value {
+            case 11:
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel))
+                    .foregroundColor(card.color)
+            case 2:
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: (acePixel/2)))
+                    .foregroundColor(card.color)
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/2))
+                    .foregroundColor(card.color)
+                    .rotationEffect(Angle(degrees: 180))
+            case 3:
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                    .rotationEffect(Angle(degrees: 180))
+            case 4:
+                HStack{
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/2))
+                    .foregroundColor(card.color)
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/2))
+                    .foregroundColor(card.color)
+                }
+                HStack{
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/2))
+                    .foregroundColor(card.color)
+                    .rotationEffect(Angle(degrees: 180))
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/2))
+                    .foregroundColor(card.color)
+                    .rotationEffect(Angle(degrees: 180))
+                }
+            case 5:
+                HStack{
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                }
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                HStack{
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                    .rotationEffect(Angle(degrees: 180))
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                    .rotationEffect(Angle(degrees: 180))
+                }
+            case 6:
+                HStack{
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                }
+                
+                HStack{
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                }
+                
+                HStack{
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                    .rotationEffect(Angle(degrees: 180))
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/3))
+                    .foregroundColor(card.color)
+                    .rotationEffect(Angle(degrees: 180))
+                }
+
+            case 7:
+                HStack{
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/4))
+                    .foregroundColor(card.color)
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/4))
+                    .foregroundColor(card.color)
+                }
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/4))
+                    .foregroundColor(card.color)
+                HStack{
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/4))
+                    .foregroundColor(card.color)
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/4))
+                    .foregroundColor(card.color)
+                }
+                
+                HStack{
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/4))
+                    .foregroundColor(card.color)
+                    .rotationEffect(Angle(degrees: 180))
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: acePixel/4))
+                    .foregroundColor(card.color)
+                    .rotationEffect(Angle(degrees: 180))
+                }
+            default:
+                Image(systemName: "suit.\(card.suit).fill")
+                    .font(.system(size: 50))
+                    .foregroundColor(card.color)
+                
+            }
             
             HStack{
-            
             Image(systemName: "suit.\(card.suit).fill").font(.system(size: 10))
                 .foregroundColor(card.color)
               Spacer()
@@ -52,6 +182,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card(suit: "heart", pip: "A"))
+        CardView(card: Card(suit: "diamond", pip: "7"))
     }
 }
